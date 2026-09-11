@@ -3,6 +3,10 @@ import { Product } from '@/context/CartContext';
 import { LOCAL_PRODUCTS } from './products-data';
 import { isUpsellCandidate, pickUpsellProduct } from './product-visibility';
 
+const UPSELL_BY_PURCHASED_SLUG: Record<string, string> = {
+  'mini-lave-linge-portable': 'mini-blender-offre',
+};
+
 export interface OrderRecord {
   id: string;
   customer_name: string;
@@ -136,6 +140,27 @@ export async function resolveOrderUpsell(
   const purchasedIds = items.map((item) => item.product_id);
   const primaryItem = items[0];
   const primaryProduct = primaryItem?.product;
+
+  if (primaryProduct?.slug && UPSELL_BY_PURCHASED_SLUG[primaryProduct.slug]) {
+    const targetSlug = UPSELL_BY_PURCHASED_SLUG[primaryProduct.slug];
+    let targetProduct: Product | null = null;
+
+    if (isSupabaseReady()) {
+      const { data } = await supabase
+        .from('products')
+        .select('*')
+        .eq('slug', targetSlug)
+        .maybeSingle();
+      if (data) targetProduct = data as Product;
+    }
+    if (!targetProduct) {
+      targetProduct = LOCAL_PRODUCTS.find((p) => p.slug === targetSlug) ?? null;
+    }
+
+    if (targetProduct && !purchasedIds.includes(targetProduct.id)) {
+      return targetProduct;
+    }
+  }
 
   if (primaryProduct?.category_id) {
     const categoryUpsell = await getCategoryUpsell(primaryProduct.category_id, primaryProduct.id);

@@ -47,7 +47,7 @@ VALUES (
     689.00,
     ARRAY['/products/mini-lave-linge-1.webp', '/products/mini-lave-linge-2.webp', '/products/mini-lave-linge-3.webp'],
     'mini-lave-linge-portable',
-    '77a6f958-3d12-40f4-b258-450f38b1f8fb',
+    '9a9a923a-b213-43f2-8ade-7c52b82724d1',
     FALSE,
     10,
     TRUE

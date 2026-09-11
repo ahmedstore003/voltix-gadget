@@ -261,4 +261,20 @@ export const LOCAL_PRODUCTS: Product[] = [
     stock: 10,
     default_lang_ar: true,
   },
+  {
+    id: 'f4444444-4444-4444-4444-444444444444',
+    title_fr: 'Mini Blender Portable Rechargeable',
+    title_ar: 'خلاط محمول صغير قابل للشحن',
+    description_fr:
+      "Offre exclusive post-commande — profitez de ce mini blender rechargeable à prix réduit, réservée aux clients AtlasTrends.\n\nPréparez vos smoothies, jus et boissons fraîches en quelques secondes où que vous soyez. Léger, rechargeable par USB et facile à transporter, ce mini blender est le compagnon idéal d'un mode de vie actif.\n\nPoints forts :\n- Rechargeable par USB\n- Lames en acier inoxydable\n- Compact et facile à transporter\n- Idéal pour smoothies, jus et milkshakes\n- Nettoyage rapide et facile",
+    description_ar:
+      'عرض حصري بعد الطلب — استفد من هذا الخلاط المحمول القابل للشحن بسعر مخفض، حصرياً لعملاء أطلس ترندز.\n\nحضّر smoothies والعصائر والمشروبات المنعشة في ثوانٍ أينما كنت. خفيف، قابل للشحن عبر USB وسهل الحمل، هذا الخلاط المحمول رفيق مثالي لنمط حياة نشط.\n\nالنقاط الرئيسية :\n- قابل للشحن عبر USB\n- شفرات من الفولاذ المقاوم للصدأ\n- مدمج وسهل النقل\n- مثالي للـ smoothies والعصائر والميلك شيك\n- تنظيف سريع وسهل',
+    price: 100.0,
+    compare_at_price: 199.0,
+    image_urls: ['/products/mini-blender-offre.webp'],
+    slug: 'mini-blender-offre',
+    category_id: '9a9a923a-b213-43f2-8ade-7c52b82724d1',
+    is_trending: false,
+    stock: 25,
+  },
 ];
