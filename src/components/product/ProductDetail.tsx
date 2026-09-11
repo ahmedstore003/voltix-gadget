@@ -162,6 +162,8 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
               )}
             </div>
 
+            <ExpandableDescription text={description} className="mt-6" />
+
             <BundleSelector
               className="mt-8 sm:mt-10"
               product={product}
@@ -169,8 +171,6 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
               onOfferChange={setBundleOffer}
               onOrderNow={scrollToCheckout}
             />
-
-            <ExpandableDescription text={description} className="mt-8" />
 
             <div className="mt-8 sm:mt-10">
               <ProductFeatureGrid />
