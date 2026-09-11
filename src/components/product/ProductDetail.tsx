@@ -102,7 +102,15 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
               {title}
             </h1>
 
-            <div className="mt-6 sm:mt-8">
+            <button
+              type="button"
+              onClick={scrollToCheckout}
+              className="mt-6 w-fit inline-flex items-center px-4 py-2 text-xs sm:text-sm font-semibold tracking-wide voltix-cta transition-opacity duration-200"
+            >
+              {t.orderNowBundle}
+            </button>
+
+            <div className="mt-5 sm:mt-6">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                 <span className="text-2xl sm:text-3xl font-bold text-foreground tabular-nums transition-all duration-200">
                   {displayTotal} {t.currencyMad}
