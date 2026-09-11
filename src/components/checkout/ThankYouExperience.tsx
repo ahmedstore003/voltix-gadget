@@ -20,6 +20,11 @@ const PostPurchaseUpsell = dynamic(
   { ssr: false, loading: () => null }
 );
 
+const MiniBlenderUpsell = dynamic(
+  () => import('@/components/checkout/MiniBlenderUpsell').then((mod) => mod.MiniBlenderUpsell),
+  { ssr: false, loading: () => null }
+);
+
 const PremiumToast = dynamic(
   () => import('@/components/checkout/PremiumToast').then((mod) => mod.PremiumToast),
   { ssr: false, loading: () => null }
@@ -133,17 +138,28 @@ export const ThankYouExperience: React.FC<ThankYouExperienceProps> = ({ orderId 
         <div className="space-y-6">
           <OrderInvoiceSummary order={order} />
 
-          {upsellProduct && (
-            <PostPurchaseUpsell
-              orderId={order.id}
-              currentTotal={order.total_price}
-              customerName={order.customer_name}
-              phoneNumber={order.phone_number}
-              upsellProduct={upsellProduct}
-              onSuccess={handleUpsellSuccess}
-              onToast={handleToast}
-            />
-          )}
+          {upsellProduct &&
+              (upsellProduct.slug === 'mini-blender-offre' ? (
+                <MiniBlenderUpsell
+                  orderId={order.id}
+                  currentTotal={order.total_price}
+                  customerName={order.customer_name}
+                  phoneNumber={order.phone_number}
+                  upsellProduct={upsellProduct}
+                  onSuccess={handleUpsellSuccess}
+                  onToast={handleToast}
+                />
+              ) : (
+                <PostPurchaseUpsell
+                  orderId={order.id}
+                  currentTotal={order.total_price}
+                  customerName={order.customer_name}
+                  phoneNumber={order.phone_number}
+                  upsellProduct={upsellProduct}
+                  onSuccess={handleUpsellSuccess}
+                  onToast={handleToast}
+                />
+              ))}
         </div>
 
         <div className="mt-10 text-center">
