@@ -21,6 +21,13 @@ export function isVisibleCatalogProduct(product: Product): boolean {
 
 const UPSELL_SLUG_HINTS = ['-offre', 'dock', 'serum', 'organizer', 'peeler'] as const;
 
+/** Produits avec offre flash : bannière « Stock limité · plus que X jours ». */
+const LIMITED_OFFER_SLUGS = ['mini-lave-linge-portable'] as const;
+
+export function hasLimitedOffer(product: Pick<Product, 'slug'>): boolean {
+  return (LIMITED_OFFER_SLUGS as readonly string[]).includes(product.slug);
+}
+
 export function isUpsellCandidate(product: Pick<Product, 'slug'>): boolean {
   return UPSELL_SLUG_HINTS.some((hint) => product.slug.includes(hint));
 }

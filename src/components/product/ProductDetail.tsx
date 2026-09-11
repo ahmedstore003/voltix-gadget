@@ -1,22 +1,24 @@
 'use client';
 
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { Product, useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
+import { LANG_STORAGE_KEY } from '@/lib/language';
 import { productTitle, productDescription, categoryName } from '@/lib/i18n';
 import {
   type BundleOffer,
   bundleQuantity,
   computeBundleCompareTotal,
-  computeBundleSavings,
-  computeBundleTotal,
+  computeBundleSavingsFromProduct,
+  computeBundleTotalFromProduct,
 } from '@/lib/bundle-pricing';
 import { CheckoutForm } from '@/components/checkout/CheckoutForm';
 import { ProductGallery } from '@/components/product/ProductGallery';
 import { ProductFeatureGrid } from '@/components/product/ProductFeatureGrid';
 import { ExpandableDescription } from '@/components/product/ExpandableDescription';
 import { BundleSelector } from '@/components/product/BundleSelector';
+import { hasLimitedOffer } from '@/lib/product-visibility';
 
 interface ProductDetailProps {
   product: Product;
@@ -31,7 +33,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
   categoryNameAr,
   categorySlug,
 }) => {
-  const { t, language } = useLanguage();
+  const { t, language, setLanguage } = useLanguage();
   const { addToCart } = useCart();
   const [bundleOffer, setBundleOffer] = useState<BundleOffer>('standard');
 
@@ -43,12 +45,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
     : 0;
 
   const displayTotal = useMemo(
-    () => computeBundleTotal(product.price, bundleOffer),
-    [product.price, bundleOffer]
+    () => computeBundleTotalFromProduct(product, bundleOffer),
+    [product, bundleOffer]
   );
 
   const selectedQuantity = bundleQuantity(bundleOffer);
-  const bundleSavings = computeBundleSavings(product.price, bundleOffer);
+  const bundleSavings = computeBundleSavingsFromProduct(product, bundleOffer);
   const bundleCompare = computeBundleCompareTotal(product.price, bundleOffer);
 
   const scrollToCheckout = useCallback(() => {
@@ -60,6 +62,12 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
   }, [addToCart, product, selectedQuantity]);
 
   const handleOrderSuccess = useCallback(() => {}, []);
+
+  useEffect(() => {
+    if (product.default_lang_ar && !localStorage.getItem(LANG_STORAGE_KEY)) {
+      setLanguage('ar');
+    }
+  }, [product.default_lang_ar, setLanguage]);
 
   return (
     <>
@@ -118,6 +126,17 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
                 )}
               </div>
 
+              {product.compare_at_price && hasLimitedOffer(product) && (
+                <div className="mt-3 flex flex-wrap items-center gap-2 text-xs">
+                  <span className="inline-flex items-center px-2 py-0.5 font-medium uppercase tracking-[0.12em] border border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-200">
+                    {t.limitedStock}
+                  </span>
+                  <span className="inline-flex items-center px-2 py-0.5 font-medium uppercase tracking-[0.12em] border border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300">
+                    {t.limitedOfferDays.replace('{days}', '5')}
+                  </span>
+                </div>
+              )}
+            </div>
               {(bundleOffer === 'duo' || bundleOffer === 'trio') && bundleSavings > 0 && (
                 <p className="mt-3 inline-flex items-center rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950/50 dark:text-emerald-200">
                   {t.bundleSavingsBadge.replace('{amount}', String(bundleSavings))}
@@ -185,7 +204,6 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
             </div>
           </div>
         </div>
-      </div>
     </>
   );
 };

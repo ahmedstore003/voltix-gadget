@@ -10,6 +10,9 @@ export interface Product {
   description_ar: string;
   price: number;
   compare_at_price?: number;
+  bundle_duo_price?: number;
+  bundle_trio_price?: number;
+  default_lang_ar?: boolean;
   image_urls: string[];
   slug: string;
   category_id?: string;

@@ -55,6 +55,26 @@ export function computeBundleTotal(unitPrice: number, offer: BundleOffer): numbe
   }
 }
 
+/** Prix de pack figé par produit (bundle_duo_price / bundle_trio_price), sinon modèle à remise. */
+export function computeDuoPackTotalFromProduct(product: Product): number {
+  return product.bundle_duo_price ?? computeDuoPackTotal(product.price);
+}
+
+export function computeTrioPackTotalFromProduct(product: Product): number {
+  return product.bundle_trio_price ?? computeTrioPackTotal(product.price);
+}
+
+export function computeBundleTotalFromProduct(product: Product, offer: BundleOffer): number {
+  switch (offer) {
+    case 'duo':
+      return computeDuoPackTotalFromProduct(product);
+    case 'trio':
+      return computeTrioPackTotalFromProduct(product);
+    default:
+      return product.price;
+  }
+}
+
 export function computeBundleCompareTotal(unitPrice: number, offer: BundleOffer): number | null {
   switch (offer) {
     case 'duo':
@@ -85,24 +105,38 @@ export function computeBundleSavings(unitPrice: number, offer: BundleOffer): num
   }
 }
 
+export function computeBundleSavingsFromProduct(product: Product, offer: BundleOffer): number {
+  if (offer === 'duo' && product.bundle_duo_price) {
+    return Math.round((computeDuoCompareTotal(product.price) - product.bundle_duo_price) * 100) / 100;
+  }
+  if (offer === 'trio' && product.bundle_trio_price) {
+    return Math.round((computeTrioCompareTotal(product.price) - product.bundle_trio_price) * 100) / 100;
+  }
+  return computeBundleSavings(product.price, offer);
+}
+
 export function buildBundleOrderItems(
   product: Product,
   offer: BundleOffer
 ): { product: Product; quantity: number; unitPrice?: number }[] {
   const price = product.price;
+  const duoTotal = computeDuoPackTotalFromProduct(product);
+  const trioTotal = computeTrioPackTotalFromProduct(product);
 
   if (offer === 'duo') {
     return [
       { product, quantity: 1, unitPrice: price },
-      { product, quantity: 1, unitPrice: computeSecondUnitPrice(price) },
+      { product, quantity: 1, unitPrice: Math.round((duoTotal - price) * 100) / 100 },
     ];
   }
 
   if (offer === 'trio') {
+    const second = Math.round(((trioTotal - price) / 2) * 100) / 100;
+    const third = Math.round((trioTotal - price - second) * 100) / 100;
     return [
       { product, quantity: 1, unitPrice: price },
-      { product, quantity: 1, unitPrice: computeSecondUnitPrice(price) },
-      { product, quantity: 1, unitPrice: computeThirdUnitPrice(price) },
+      { product, quantity: 1, unitPrice: second },
+      { product, quantity: 1, unitPrice: third },
     ];
   }
 

@@ -8,6 +8,7 @@ import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { productTitle } from '@/lib/i18n';
 import { isRealImageUrl } from '@/lib/images';
+import { hasLimitedOffer } from '@/lib/product-visibility';
 
 interface HomeProductCardProps {
   product: Product;
@@ -21,6 +22,10 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({ product, prior
 
   const title = productTitle(product, language);
   const imageUrl = product.image_urls[0];
+  const catalogDiscount =
+    product.compare_at_price && product.compare_at_price > product.price
+      ? Math.round(((product.compare_at_price - product.price) / product.compare_at_price) * 100)
+      : 0;
 
   const handleAdd = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -58,6 +63,12 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({ product, prior
 
         <div className="pointer-events-none absolute inset-0 bg-background/0 group-hover:bg-background/10 transition-opacity duration-300 ease-out transform-gpu" />
 
+        {catalogDiscount > 0 && (
+          <span className="absolute z-10 top-2 left-2 inline-flex items-center px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] voltix-cta">
+            −{catalogDiscount}%
+          </span>
+        )}
+
         <div className="hidden sm:block absolute inset-x-0 bottom-0 z-10 p-3 sm:p-4 pointer-events-none sm:translate-y-2 sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 transition-transform duration-300 ease-out transform-gpu">
           <button
             type="button"
@@ -87,6 +98,17 @@ export const HomeProductCard: React.FC<HomeProductCardProps> = ({ product, prior
             </span>
           )}
         </div>
+
+        {product.compare_at_price && hasLimitedOffer(product) && (
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em] border border-amber-300 bg-amber-50 text-amber-800 dark:border-amber-900 dark:bg-amber-950/50 dark:text-amber-200">
+              {t.limitedStock}
+            </span>
+            <span className="inline-flex items-center px-2 py-0.5 text-[10px] font-medium uppercase tracking-[0.12em] border border-red-300 bg-red-50 text-red-700 dark:border-red-900 dark:bg-red-950/50 dark:text-red-300">
+              {t.limitedOfferDays.replace('{days}', '5')}
+            </span>
+          </div>
+        )}
 
         <button
           type="button"

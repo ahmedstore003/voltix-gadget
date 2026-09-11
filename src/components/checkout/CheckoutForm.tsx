@@ -28,7 +28,7 @@ import {
   buildBundleOrderItems,
   bundleOfferLabelKey,
   bundleQuantity,
-  computeBundleTotal,
+  computeBundleTotalFromProduct,
 } from '@/lib/bundle-pricing';
 
 interface CheckoutFormProps {
@@ -69,7 +69,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const totalPrice = useMemo(() => {
     if (singleProduct) {
-      return computeBundleTotal(singleProduct.price, bundleOffer);
+      return computeBundleTotalFromProduct(singleProduct, bundleOffer);
     }
     return cartTotal;
   }, [singleProduct, bundleOffer, cartTotal]);

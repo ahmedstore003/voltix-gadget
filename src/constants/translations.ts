@@ -35,6 +35,7 @@ export interface TranslationDict {
   bundleTrioSub: string;
   bundleTrioBadge: string;
   bundleTrioQuantityHint: string;
+  bundlePackFixed: string;
   bundleSavingsBadge: string;
   orderNowBundle: string;
   qty1Option: string;
@@ -128,6 +129,7 @@ export interface TranslationDict {
   pageNotFound: string;
   pageNotFoundDesc: string;
   limitedStock: string;
+  limitedOfferDays: string;
   premiumQualityLabel: string;
   satisfactionLabel: string;
   unitLabel: string;
@@ -183,6 +185,7 @@ export const translations: Record<Language, TranslationDict> = {
     bundleTrioSub: '3× produit · 2e −{duoPercent} %, 3e −{trioPercent} %',
     bundleTrioBadge: 'Max économies',
     bundleTrioQuantityHint: 'Pack Trio · {qty} unités',
+    bundlePackFixed: 'Pack {qty}× — {price} DH au lieu de {compare} DH',
     bundleSavingsBadge: 'Vous économisez {amount} DH',
     orderNowBundle: 'Commander maintenant',
     qty1Option: '1 produit',
@@ -250,6 +253,7 @@ export const translations: Record<Language, TranslationDict> = {
     footerDelivery: 'Livraison nationale · Paiement à la livraison',
     footerContact: 'Service client 7j/7',
     limitedStock: 'Stock limité',
+    limitedOfferDays: 'Il reste seulement {days} jours pour cette offre',
     premiumQualityLabel: 'Qualité premium',
     satisfactionLabel: 'Satisfaction garantie',
     unitLabel: 'unité',
@@ -330,6 +334,7 @@ export const translations: Record<Language, TranslationDict> = {
     bundleTrioSub: '3× منتج · الثاني −{duoPercent} %، الثالث −{trioPercent} %',
     bundleTrioBadge: 'أقصى توفير',
     bundleTrioQuantityHint: 'باقة Trio · {qty} وحدات',
+    bundlePackFixed: 'باقة {qty}× — {price} درهم بدلاً من {compare} درهم',
     bundleSavingsBadge: 'وفّرت {amount} درهم',
     orderNowBundle: 'اطلب الآن',
     qty1Option: 'منتج واحد',
@@ -397,6 +402,7 @@ export const translations: Record<Language, TranslationDict> = {
     footerDelivery: 'توصيل وطني · الدفع عند الاستلام',
     footerContact: 'خدمة العملاء طوال الأسبوع',
     limitedStock: 'كمية محدودة',
+    limitedOfferDays: 'متبقي {days} أيام فقط',
     premiumQualityLabel: 'جودة ممتازة',
     satisfactionLabel: 'ضمان الرضا',
     unitLabel: 'وحدة',

@@ -238,4 +238,27 @@ export const LOCAL_PRODUCTS: Product[] = [
     is_trending: false,
     stock: 50,
   },
+  {
+    id: 'e1111111-1111-1111-1111-111111111111',
+    title_fr: 'Mini Machine à Laver Portable',
+    title_ar: 'غسالة صغيرة محمولة',
+    description_fr:
+      'Petite machine à laver… mais un vrai gain de temps ! 😍\n\n❌ Plus besoin d\'attendre d\'avoir beaucoup de linge pour faire une machine.\n\n❌ Pas besoin d\'utiliser une grande machine pour laver les sous-vêtements, chaussettes et vêtements de bébé.\n\n✅ Cette mini machine à laver portable vous permet de laver votre petit linge facilement et sans complication !\n\n💧 Compacte & portable — emportez-la partout où vous voulez\n🧼 Facile à utiliser & à nettoyer\n🏠 Idéale pour la maison, l\'appartement, les voyages et les étudiants\n👕 Parfaite pour les petites lessives du quotidien\n\n🔥 PRIX : SEULEMENT 259 DH\n\n🚚 Livraison à domicile\n💵 Paiement à la livraison\n\n👉 Commandez maintenant et simplifiez votre quotidien !',
+    description_ar:
+      '🧺 غسالة صغيرة… ولكن كتسهل عليك الحياة بزاف! 😍\n\n❌ ما تبقاش تجمع الملابس الصغيرة باش تغسلهم\n❌ ما تحتاجش غسالة كبيرة باش تغسل الملابس الداخلية، الجوارب وملابس الأطفال\n✅ هاد الغسالة المحمولة كتخليك تغسل بسهولة وبلا تعقيدات!\n\n💧 صغيرة ومحمولة — خدها معاك فين ما بغيتي\n🧼 سهلة التنظيف والاستعمال\n🏠 مثالية للدار، الشقة، السفر وحتى السكن الجامعي\n👕 مناسبة للملابس الخفيفة والغسيل اليومي\n\n🔥 الثمن: غير 259 DH\n\n💵 الأداء عند الاستلام',
+    price: 259.0,
+    compare_at_price: 349.0,
+    bundle_duo_price: 479.0,
+    bundle_trio_price: 689.0,
+    image_urls: [
+      '/products/mini-lave-linge-1.webp',
+      '/products/mini-lave-linge-2.webp',
+      '/products/mini-lave-linge-3.webp',
+    ],
+    slug: 'mini-lave-linge-portable',
+    category_id: '9a9a923a-b213-43f2-8ade-7c52b82724d1',
+    is_trending: false,
+    stock: 10,
+    default_lang_ar: true,
+  },
 ];

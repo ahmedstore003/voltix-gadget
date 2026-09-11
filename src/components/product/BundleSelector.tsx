@@ -6,11 +6,11 @@ import type { Product } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import {
   type BundleOffer,
-  computeBundleSavings,
+  computeBundleSavingsFromProduct,
   computeDuoCompareTotal,
-  computeDuoPackTotal,
+  computeDuoPackTotalFromProduct,
   computeTrioCompareTotal,
-  computeTrioPackTotal,
+  computeTrioPackTotalFromProduct,
   DUO_SECOND_UNIT_DISCOUNT,
   TRIO_THIRD_UNIT_DISCOUNT,
 } from '@/lib/bundle-pricing';
@@ -36,11 +36,11 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
   const { t } = useLanguage();
 
   const unitPrice = product.price;
-  const duoTotal = computeDuoPackTotal(unitPrice);
-  const trioTotal = computeTrioPackTotal(unitPrice);
+  const duoTotal = computeDuoPackTotalFromProduct(product);
+  const trioTotal = computeTrioPackTotalFromProduct(product);
   const duoCompare = computeDuoCompareTotal(unitPrice);
   const trioCompare = computeTrioCompareTotal(unitPrice);
-  const savings = computeBundleSavings(unitPrice, selectedOffer);
+  const savings = computeBundleSavingsFromProduct(product, selectedOffer);
   const duoDiscountPercent = Math.round(DUO_SECOND_UNIT_DISCOUNT * 100);
   const trioDiscountPercent = Math.round(TRIO_THIRD_UNIT_DISCOUNT * 100);
 
@@ -63,7 +63,12 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
     {
       id: 'duo',
       title: t.bundleDuoLabel,
-      subtitle: t.bundleDuoSub.replace('{percent}', String(duoDiscountPercent)),
+      subtitle: product.bundle_duo_price
+        ? t.bundlePackFixed
+            .replace('{qty}', '2')
+            .replace('{price}', String(duoTotal))
+            .replace('{compare}', String(duoCompare))
+        : t.bundleDuoSub.replace('{percent}', String(duoDiscountPercent)),
       price: duoTotal,
       compareAt: duoCompare,
       highlight: 'duo',
@@ -73,9 +78,14 @@ export const BundleSelector: React.FC<BundleSelectorProps> = ({
     {
       id: 'trio',
       title: t.bundleTrioLabel,
-      subtitle: t.bundleTrioSub
-        .replace('{duoPercent}', String(duoDiscountPercent))
-        .replace('{trioPercent}', String(trioDiscountPercent)),
+      subtitle: product.bundle_trio_price
+        ? t.bundlePackFixed
+            .replace('{qty}', '3')
+            .replace('{price}', String(trioTotal))
+            .replace('{compare}', String(trioCompare))
+        : t.bundleTrioSub
+            .replace('{duoPercent}', String(duoDiscountPercent))
+            .replace('{trioPercent}', String(trioDiscountPercent)),
       price: trioTotal,
       compareAt: trioCompare,
       highlight: 'trio',
