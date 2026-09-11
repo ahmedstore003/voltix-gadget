@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Truck, Banknote, Sparkles, ShieldCheck } from 'lucide-react';
+import { Truck, Banknote, Sparkles, ShieldCheck, Star } from 'lucide-react';
 import { useLanguage } from '@/context/LanguageContext';
 
 const FEATURES = [
@@ -15,7 +15,8 @@ export const ProductFeatureGrid: React.FC = () => {
   const { t } = useLanguage();
 
   return (
-    <div className="grid grid-cols-2 gap-3 sm:gap-4">
+    <>
+      <div className="grid grid-cols-2 gap-3 sm:gap-4">
       {FEATURES.map(({ icon: Icon, labelKey, descKey }) => (
         <div
           key={labelKey}
@@ -29,5 +30,30 @@ export const ProductFeatureGrid: React.FC = () => {
         </div>
       ))}
     </div>
+
+    <div className="mt-4 voltix-surface p-4 shadow-sm text-start">
+      <div className="flex items-center gap-1 text-amber-500">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+        ))}
+      </div>
+      <p className="mt-2 text-[13px] font-semibold text-foreground leading-snug">سارة – الدار البيضاء</p>
+      <p className="mt-1 text-xs text-muted-foreground leading-relaxed" dir="rtl">
+        صراحة زوينة بزاف، خديتها باش نغسل الملابس الداخلية والجوارب، كتسهل عليا الخدمة بزاف 👌
+      </p>
+      </div>
+
+      <div className="mt-3 voltix-surface p-4 shadow-sm text-start">
+        <div className="flex items-center gap-1 text-amber-500">
+          {[0, 1, 2, 3, 4].map((i) => (
+            <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+          ))}
+        </div>
+        <p className="mt-2 text-[13px] font-semibold text-foreground leading-snug">أمينة</p>
+        <p className="mt-1 text-xs text-muted-foreground leading-relaxed" dir="rtl">
+          عجبتني حيث صغيرة وما كتشدش البلاصة، كنستعملها للملابس ديال الدراري وكتخدمني مزيان.
+        </p>
+      </div>
+    </>
   );
 };
