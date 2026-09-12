@@ -3,12 +3,27 @@
 import Script from 'next/script';
 import { getMetaPixelId, getTikTokPixelId } from '@/lib/analytics/pixels';
 
+const GA_MEASUREMENT_ID = 'G-8R8HKCZ4S5';
+
 export function Trackers() {
   const metaPixelId = getMetaPixelId();
   const tiktokPixelId = getTikTokPixelId();
 
   return (
     <>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_MEASUREMENT_ID}');
+        `}
+      </Script>
+
       {metaPixelId && (
         <>
           <Script id="meta-pixel" strategy="afterInteractive">
