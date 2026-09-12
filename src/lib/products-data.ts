@@ -277,4 +277,27 @@ export const LOCAL_PRODUCTS: Product[] = [
     is_trending: false,
     stock: 25,
   },
+  {
+    id: 'e2222222-2222-2222-2222-222222222222',
+    title_fr: 'Lampe de Nuit Musicale en Spirale avec Lapins Tournants',
+    title_ar: 'مصباح ليلي موسيقي على شكل دوامة مع أرانب دوارة',
+    description_fr:
+      'Une lampe de nuit musicale en spirale envoûtante, avec des lapins qui tournent en douceur. Un vrai spectacle apaisant pour la chambre des petits… et des grands ! 😍\n\n✨ Design en spirale avec lapins rotatifs\n🎵 Projecteur musical avec sons relaxants\n🌙 Idéale comme veilleuse pour bébé et enfants\n🟢 Économique, douce et apaisante pour le sommeil\n\n✅ Stock disponible\n🔥 Demande élevée — s\'écoule vite\n🚚 Livraison rapide à domicile\n🛡️ Garantie qualité\n💵 Paiement à la livraison\n\n👉 Commandez maintenant et transformez vos nuits !',
+    description_ar:
+      '✨ مصباح ليلي موسيقي على شكل دوامة مع أرانب دوارة، كيخلي جو ساحر وهادئ في الغرفة! 😍\n\n🎵 شكل دوامة مع أرانب كيدورو بنعومة\n✨ إضاءة ناعمة مريحة للعينين\n🌙 مثالي لغرفة الأطفال والرضّع\n🔋 اقتصادي في الاستهلاك\n\n✅ متوفر في المخزون\n🔥 طلب مرتفع — كيسالي بسرعة\n🚚 توصيل سريع حتى باب الدار\n🛡️ ضمان الجودة\n💵 دفع عند الاستلام\n\n👉 اطلب دابا وبدل الليالي ديالك !',
+    price: 289.0,
+    compare_at_price: 389.0,
+    bundle_duo_price: 539.0,
+    bundle_trio_price: 779.0,
+    image_urls: [
+      '/products/lampe-nuit-1.webp',
+      '/products/lampe-nuit-2.webp',
+      '/products/lampe-nuit-3.webp',
+    ],
+    slug: 'lampe-nuit-lapins-tournants',
+    category_id: '9a9a923a-b213-43f2-8ade-7c52b82724d1',
+    is_trending: false,
+    stock: 10,
+    default_lang_ar: true,
+  },
 ];
