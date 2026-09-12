@@ -59,7 +59,7 @@ export const CheckoutForm: React.FC<CheckoutFormProps> = ({
 
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
-  const [city, setCity] = useState('');
+  const [city, setCity] = useState('Casablanca');
   const [address, setAddress] = useState('');
   const [hasInteracted, setHasInteracted] = useState(false);
   const [loading, setLoading] = useState(false);
