@@ -282,9 +282,9 @@ export const LOCAL_PRODUCTS: Product[] = [
     title_fr: 'Lampe de Nuit Musicale en Spirale avec Lapins Tournants',
     title_ar: 'مصباح ليلي موسيقي على شكل دوامة مع أرانب دوارة',
     description_fr:
-      'Une lampe de nuit musicale en spirale envoûtante, avec des lapins qui tournent en douceur. Un vrai spectacle apaisant pour la chambre des petits… et des grands ! 😍\n\n✨ Design en spirale avec lapins rotatifs\n🎵 Projecteur musical avec sons relaxants\n🌙 Idéale comme veilleuse pour bébé et enfants\n🟢 Économique, douce et apaisante pour le sommeil\n\n✅ Stock disponible\n🔥 Demande élevée — s\'écoule vite\n🚚 Livraison rapide à domicile\n🛡️ Garantie qualité\n💵 Paiement à la livraison\n\n👉 Commandez maintenant et transformez vos nuits !',
+      '🌙 Le projecteur d\'étoiles magique pour enfants… transforme la chambre en un monde entier d\'étoiles et de musique ! ✨\n\nFais de la chambre de ton enfant un univers enchanté chaque nuit !\n\n🌙 Projection d\'étoiles et de lune sur le plafond et les murs.\n🎵 Lecture de musique via Bluetooth.\n🎮 Télécommande pour tout contrôler facilement.\n🎞️ 6 modes de projection différents.\n💡 Couleurs multiples et luminosité réglable.\n⏰ Minuterie d\'extinction automatique.\n🔌 Fonctionne via USB.\n\n🎁 Un cadeau parfait pour les enfants et même pour les adultes qui aiment les ambiances douces.',
     description_ar:
-      '✨ مصباح ليلي موسيقي على شكل دوامة مع أرانب دوارة، كيخلي جو ساحر وهادئ في الغرفة! 😍\n\n🎵 شكل دوامة مع أرانب كيدورو بنعومة\n✨ إضاءة ناعمة مريحة للعينين\n🌙 مثالي لغرفة الأطفال والرضّع\n🔋 اقتصادي في الاستهلاك\n\n✅ متوفر في المخزون\n🔥 طلب مرتفع — كيسالي بسرعة\n🚚 توصيل سريع حتى باب الدار\n🛡️ ضمان الجودة\n💵 دفع عند الاستلام\n\n👉 اطلب دابا وبدل الليالي ديالك !',
+      '🌙 مصباح النجوم السحري للأطفال... يحول الغرفة لعالم كامل من النجوم والموسيقى! ✨\n\nخلي غرفة وليدك تولي عالم ساحر كل ليلة!\n\n🌙 إسقاط نجوم وقمر على السقف والجدران.\n🎵 يشغل الموسيقى عبر البلوتوث.\n🎮 ريموت للتحكم بكل سهولة.\n🎞️ 6 أفلام عرض مختلفة.\n💡 ألوان متعددة وسطوع قابل للتعديل.\n⏰ مؤقت للإطفاء التلقائي.\n🔌 يعمل عبر USB.\n\n🎁 هدية رائعة للأطفال وحتى للكبار لي يحبو الأجواء الهادئة',
     price: 289.0,
     compare_at_price: 389.0,
     bundle_duo_price: 539.0,
