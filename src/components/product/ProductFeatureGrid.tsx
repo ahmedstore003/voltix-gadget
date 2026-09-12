@@ -11,49 +11,76 @@ const FEATURES = [
   { icon: ShieldCheck, labelKey: 'satisfactionLabel' as const, descKey: 'pdpFeatureSatisfactionDesc' as const },
 ];
 
-export const ProductFeatureGrid: React.FC = () => {
+interface Review {
+  author: string;
+  text: string;
+}
+
+const REVIEWS_BY_PRODUCT: Record<string, Review[]> = {
+  'mini-lave-linge-portable': [
+    {
+      author: 'سارة – الدار البيضاء',
+      text: 'صراحة زوينة بزاف، خديتها باش نغسل الملابس الداخلية والجوارب، كتسهل عليا الخدمة بزاف 👌',
+    },
+    {
+      author: 'أمينة',
+      text: 'عجبتني حيث صغيرة وما كتشدش البلاصة، كنستعملها للملابس ديال الدراري وكتخدمني مزيان.',
+    },
+  ],
+  'lampe-nuit-lapins-tournants': [
+    {
+      author: 'مريم',
+      text: 'زوين بزاف 😍 الضوء ديالو هادئ والأرانب كيدورو بطريقة كتريح، وليدي عجباتو بزاف وولات الغرفة ديالو كتجي زوينة فالليل 🌙❤️',
+    },
+    {
+      author: 'نادية – الدار البيضاء',
+      text: 'بصراحة جا أحسن مما كنت متوقعة 👌 الشكل ديالو كيوت بزاف والضو ماشي قوي، مناسب بزاف لغرفة الدراري. فرحانة بالشراء ديالي 🥰',
+    },
+  ],
+};
+
+interface ProductFeatureGridProps {
+  productSlug?: string;
+}
+
+export const ProductFeatureGrid: React.FC<ProductFeatureGridProps> = ({ productSlug }) => {
   const { t } = useLanguage();
+
+  const reviews = productSlug ? REVIEWS_BY_PRODUCT[productSlug] ?? [] : [];
 
   return (
     <>
       <div className="grid grid-cols-2 gap-3 sm:gap-4">
-      {FEATURES.map(({ icon: Icon, labelKey, descKey }) => (
-        <div
-          key={labelKey}
-          className="flex flex-col gap-2.5 voltix-surface p-4 text-start shadow-sm"
-        >
-          <Icon className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
-          <div>
-            <p className="text-xs font-medium text-foreground leading-snug">{t[labelKey]}</p>
-            <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">{t[descKey]}</p>
+        {FEATURES.map(({ icon: Icon, labelKey, descKey }) => (
+          <div
+            key={labelKey}
+            className="flex flex-col gap-2.5 voltix-surface p-4 text-start shadow-sm"
+          >
+            <Icon className="h-4 w-4 text-muted-foreground" strokeWidth={1.5} />
+            <div>
+              <p className="text-xs font-medium text-foreground leading-snug">{t[labelKey]}</p>
+              <p className="mt-1 text-[11px] text-muted-foreground leading-relaxed">{t[descKey]}</p>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
-
-    <div className="mt-4 voltix-surface p-4 shadow-sm text-start">
-      <div className="flex items-center gap-1 text-amber-500">
-        {[0, 1, 2, 3, 4].map((i) => (
-          <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
         ))}
       </div>
-      <p className="mt-2 text-[13px] font-semibold text-foreground leading-snug">سارة – الدار البيضاء</p>
-      <p className="mt-1 text-xs text-muted-foreground leading-relaxed" dir="rtl">
-        صراحة زوينة بزاف، خديتها باش نغسل الملابس الداخلية والجوارب، كتسهل عليا الخدمة بزاف 👌
-      </p>
-      </div>
 
-      <div className="mt-3 voltix-surface p-4 shadow-sm text-start">
-        <div className="flex items-center gap-1 text-amber-500">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
-          ))}
+      {reviews.map((review, index) => (
+        <div
+          key={review.author}
+          className={`${index === 0 ? 'mt-4' : 'mt-3'} voltix-surface p-4 shadow-sm text-start`}
+        >
+          <div className="flex items-center gap-1 text-amber-500">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <Star key={i} className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+            ))}
+          </div>
+          <p className="mt-2 text-[13px] font-semibold text-foreground leading-snug">{review.author}</p>
+          <p className="mt-1 text-xs text-muted-foreground leading-relaxed" dir="rtl">
+            {review.text}
+          </p>
         </div>
-        <p className="mt-2 text-[13px] font-semibold text-foreground leading-snug">أمينة</p>
-        <p className="mt-1 text-xs text-muted-foreground leading-relaxed" dir="rtl">
-          عجبتني حيث صغيرة وما كتشدش البلاصة، كنستعملها للملابس ديال الدراري وكتخدمني مزيان.
-        </p>
-      </div>
+      ))}
     </>
   );
 };

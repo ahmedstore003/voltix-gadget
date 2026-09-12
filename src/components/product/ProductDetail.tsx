@@ -181,7 +181,7 @@ export const ProductDetail: React.FC<ProductDetailProps> = ({
             />
 
             <div className="mt-8 sm:mt-10">
-              <ProductFeatureGrid />
+              <ProductFeatureGrid productSlug={product.slug} />
             </div>
 
             <div className="mt-8 hidden lg:flex flex-col sm:flex-row gap-3">
