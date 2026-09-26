@@ -454,12 +454,28 @@
       .single()
       .then(function ({ data, error }) {
         if (error || !data) throw new Error((error && error.message) || "insert orders failed");
-        return db.from("order_items").insert({
-          order_id: data.id,
-          product_id: PRODUCT_ID,
-          quantity: PACK_QTY,
-          price: UNIT_PRICE,
-        });
+        return db
+          .from("order_items")
+          .insert({
+            order_id: data.id,
+            product_id: PRODUCT_ID,
+            quantity: PACK_QTY,
+            price: UNIT_PRICE,
+          })
+          .then(function (res) {
+            if (res.error) {
+              /* Produit absent en base : on garde la commande (product_id null)
+                 pour ne jamais perdre une vente. */
+              console.warn("order_items (product_id) refusé, retry sans product_id :", res.error.message);
+              return db.from("order_items").insert({
+                order_id: data.id,
+                product_id: null,
+                quantity: PACK_QTY,
+                price: UNIT_PRICE,
+              });
+            }
+            return res;
+          });
       })
       .then(function ({ error }) {
         if (error) throw new Error(error.message);
