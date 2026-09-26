@@ -6,8 +6,13 @@ export function isUpsellOnlyProduct(product: Pick<Product, 'slug'>): boolean {
   return product.slug.includes('-offre');
 }
 
+/** Produits réservés aux pages de vente /lp — exclus du catalogue et des fiches produits. */
+export function isLandingOnlyProduct(product: Pick<Product, 'slug'>): boolean {
+  return product.slug.includes('-lp');
+}
+
 export function isCatalogProduct(product: Pick<Product, 'slug'>): boolean {
-  return !isUpsellOnlyProduct(product);
+  return !isUpsellOnlyProduct(product) && !isLandingOnlyProduct(product);
 }
 
 /** Exclut les placeholders sans vraie photo (/products/… ou URL). */

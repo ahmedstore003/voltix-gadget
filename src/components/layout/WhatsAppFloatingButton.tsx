@@ -1,6 +1,13 @@
 'use client';
 
+import { usePathname } from 'next/navigation';
+
 export function WhatsAppFloatingButton() {
+  const pathname = usePathname();
+  if (pathname?.startsWith('/lp')) {
+    return null;
+  }
+
   return (
     <>
       <a

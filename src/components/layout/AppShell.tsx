@@ -12,9 +12,9 @@ interface AppShellProps {
 
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   const pathname = usePathname();
-  const isAdminRoute = pathname?.startsWith('/admin');
+  const isBareRoute = pathname?.startsWith('/admin') || pathname?.startsWith('/lp');
 
-  if (isAdminRoute) {
+  if (isBareRoute) {
     return <>{children}</>;
   }
 

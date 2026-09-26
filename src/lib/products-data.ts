@@ -300,4 +300,23 @@ export const LOCAL_PRODUCTS: Product[] = [
     stock: 10,
     default_lang_ar: true,
   },
+  {
+    id: 'e3333333-3333-4333-8333-333333333333',
+    title_fr: 'Ceinture Élastique Homme sans Trou – Gris Liserés Bleus',
+    title_ar: 'سمطة رجالية رياضية مطاطية بلا ثقوب',
+    description_fr:
+      'Ceinture homme en tissu élastique stretch avec clip sans trous. Un réglage qui suit votre tour de taille naturellement, un style sport/casual qui passe partout.',
+    description_ar:
+      'سمطة رجالية بقماش مطاطي مرن، نظام كليبس بدون ثقوب، مقاس واحد يناسب الجميع من 30 حتى 42. لوك كاجوال/سبور رمادي مع خطوط زرقاء.',
+    price: 149.0,
+    compare_at_price: 249.0,
+    bundle_duo_price: 279.0,
+    bundle_trio_price: 399.0,
+    image_urls: ['/lp-media/ceinture/hero.webp'],
+    slug: 'ceinture-elastic-sport-lp',
+    category_id: '9a9a923a-b213-43f2-8ade-7c52b82724d1',
+    is_trending: false,
+    stock: 30,
+    default_lang_ar: true,
+  },
 ];

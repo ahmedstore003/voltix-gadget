@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>سمطة رجالية رياضية مطاطية بلا ثقوب | 149 د.م — الدفع عند الاستلام</title>
+<meta name="description" content="سمطة رجالية بقماش مطاطي مرن، نظام كليبس بدون ثقوب، 3 ألوان. توصيل سريع للدار البيضاء والدفع عند الاستلام.">
+<style>
+  /* ============ BASE ============ */
+  :root {
+    --blue: #2a5ce0;
+    --blue-dark: #1e45b5;
+    --ink: #1d1f27;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg: #f4f5f7;
+    --green: #16a34a;
+    --red: #dc2626;
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Segoe UI", Tahoma, "Noto Sans Arabic", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    padding-bottom: 0;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
+  }
+  @media (max-width: 768px) { body { padding-bottom: 86px; } } /* place pour la sticky bar */
+
+  img { max-width: 100%; height: auto; display: block; }
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .section { padding: 24px 16px; }
+  .section-title-img { width: 100%; border-radius: 12px; }
+
+  /* ============ BOUTONS / INPUTS (≥44px tactiles) ============ */
+  .btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 52px; width: 100%;
+    border: 0; border-radius: 14px; cursor: pointer;
+    font-size: 17px; font-weight: 800; color: #fff;
+    background: var(--blue);
+    box-shadow: 0 10px 22px rgba(42, 92, 224, 0.35);
+    transition: transform .12s ease, background .15s ease;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn:hover { background: var(--blue-dark); }
+  .btn:focus-visible { outline: 3px solid #93c5fd; outline-offset: 2px; }
+
+  .field label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .field input, .field select {
+    width: 100%; min-height: 48px; padding: 12px 14px;
+    font-size: 16px; font-family: inherit; color: var(--ink);
+    background: #fff; border: 1.5px solid var(--line); border-radius: 12px;
+    transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input:focus, .field select:focus {
+    outline: none; border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(42, 92, 224, .18);
+  }
+  .field + .field { margin-top: 14px; }
+  .error-msg { display: none; color: var(--red); font-size: 13px; margin-top: 5px; font-weight: 600; }
+  .error-msg.show { display: block; }
+
+  /* ============ HERO ============ */
+  /* Image affichée EN ENTIER dans le même cadre que les autres sections */
+  .hero-body { padding: 16px 0 0; }
+  .price-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .price-now { font-size: 38px; font-weight: 900; line-height: 1; }
+  .price-old { font-size: 22px; color: var(--muted); text-decoration: line-through; }
+  .price-badge {
+    background: #f97316; color: #fff; font-size: 14px; font-weight: 800;
+    padding: 4px 12px; border-radius: 999px; animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100% { } 50% { transform: scale(1.07); } }
+  .hero-info { margin-top: 12px; text-align: center; font-size: 14px; color: var(--muted); font-weight: 600; }
+  .offer-line { margin-top: 10px; text-align: center; font-size: 15px; font-weight: 700; }
+  .offer-line strong { color: var(--blue); }
+  .stock-line {
+    margin: 12px auto 0; width: fit-content; max-width: 100%;
+    display: flex; align-items: center; gap: 8px;
+    background: #fff7ed; border: 1px solid #fed7aa; color: #c2410c;
+    border-radius: 999px; padding: 8px 16px; font-size: 13px; font-weight: 800;
+  }
+  .countdown { font-variant-numeric: tabular-nums; }
+
+  /* ============ COMPARATIF + BADGES ============ */
+  .trust-badges {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 16px;
+  }
+  .trust-badge {
+    background: #fff; border: 1px solid var(--line); border-radius: 999px;
+    padding: 8px 14px; font-size: 13px; font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0,0,0,.05);
+  }
+
+  /* ============ AVIS CLIENTS ============ */
+  .reviews { display: flex; flex-direction: column; gap: 12px; }
+  .review {
+    background: #fff; border: 1px solid var(--line); border-radius: 14px;
+    padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,.05);
+  }
+  .review-stars { color: #f59e0b; font-size: 16px; letter-spacing: 2px; line-height: 1; }
+  .review-text { font-size: 15px; margin: 10px 0 14px; }
+  .review-meta { display: flex; align-items: center; gap: 10px; }
+  .review-avatar {
+    width: 38px; height: 38px; flex: 0 0 auto; border-radius: 50%;
+    background: var(--blue); color: #fff; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .review-meta strong { display: block; font-size: 14px; }
+  .review-meta small { color: var(--muted); font-size: 12px; }
+
+  /* ============ FORMULAIRE ============ */
+  .order-card {
+    background: #fff; border: 1px solid var(--line); border-radius: 20px;
+    padding: 20px 18px; box-shadow: 0 10px 30px rgba(0,0,0,.08); max-width: 560px; margin: 0 auto;
+  }
+  .subtitle { text-align: center; color: var(--muted); font-size: 14px; margin: 4px 0 18px; }
+  .offer-box {
+    border: 2px solid var(--blue); border-radius: 16px; background: #eef2ff; padding: 16px;
+  }
+  .offer-box-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .offer-box-qty { font-size: 18px; font-weight: 900; color: var(--ink); }
+  .offer-box-price { font-size: 20px; font-weight: 900; color: var(--blue); white-space: nowrap; }
+  .offer-box-price s { font-size: 14px; color: var(--muted); margin-inline-start: 6px; }
+  .offer-box-note { margin-top: 8px; font-size: 13px; font-weight: 700; color: #c2410c; text-align: center; }
+  .total-row {
+    margin-top: 14px; text-align: center; font-size: 15px; font-weight: 600; color: var(--muted);
+  }
+  .total-row strong { color: var(--ink); font-size: 18px; }
+  .shipping-note {
+    margin-top: 6px; text-align: center; font-size: 14px; font-weight: 800; color: var(--green);
+    background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 9px 12px;
+  }
+  .order-form { margin-top: 18px; }
+  .hint { margin-top: 6px; font-size: 12px; color: var(--muted); }
+  .note-casa { margin-top: 6px; font-size: 12px; color: var(--muted); }
+
+  /* ============ STICKY BAR (mobile) ============ */
+  .sticky-bar {
+    position: fixed; inset-inline: 0; bottom: 0; z-index: 50;
+    background: rgba(255,255,255,.96); backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+    display: none;
+    box-shadow: 0 -8px 24px rgba(0,0,0,.08);
+  }
+  .sticky-inner { display: flex; align-items: center; gap: 14px; max-width: 560px; margin: 0 auto; }
+  .sticky-price { font-size: 19px; font-weight: 900; white-space: nowrap; }
+  .sticky-price small { display: block; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .sticky-bar .btn { flex: 1; }
+  @media (max-width: 768px) { .sticky-bar { display: block; } }
+
+  /* Desktop: centrage & respirer */
+  @media (min-width: 769px) {
+    .section { padding: 40px 24px; }
+    .container { max-width: 900px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SECTION: HERO -->
+<header class="section container">
+  <!-- LCP : pas de lazy load ; srcset/sizes = bon fichier selon l'écran et le DPR
+       (phone 1x/2x → hero-banner-mobile.jpg 900w / 2-3x → hero-banner-mobile-2x.jpg 1440w
+        desktop → hero-banner.jpg 1024w) -->
+  <img
+    class="section-title-img"
+    src="/a7zima/images/hero-banner.jpg"
+    srcset="/a7zima/images/hero-banner-mobile.jpg 900w, images/hero-banner.jpg 900w"
+    sizes="(max-width: 640px) 100vw, (min-width: 641px) 900px"
+    alt="سمطة رجالية رياضية مطاطية بلا ثقوب - عرض خاص بخصم 40% وتقييم 4.9 نجوم"
+    fetchpriority="high"
+    width="900" height="600">
+
+  <div class="hero-body">
+    <!-- Offre : pack de 3 pièces -->
+    <div class="price-row">
+      <span class="price-now">149 <small>د.م</small></span>
+      <span class="price-old">249 د.م</span>
+      <span class="price-badge">-40%</span>
+    </div>
+    <p class="offer-line">🎁 العرض: <strong>3 قطع</strong> بـ 149 د.م بدل 249 د.م</p>
+    <p class="stock-line">
+      ⏳ عرض محدود: 5 أيام — باقي <span class="countdown" id="countdown">…</span>
+    </p>
+
+    <div style="margin-top:16px">
+      <button type="button" class="btn" data-scroll="#order">اطلب دابا 👈</button>
+    </div>
+    <p class="hero-info">💵 الدفع عند الاستلام · 🚚 توصيل مجاني وسريع للدار البيضاء</p>
+  </div>
+</header>
+
+<!-- SECTION: ARGUMENTS PRODUIT -->
+<section class="section container" aria-labelledby="title-benefits">
+  <h2 id="title-benefits" class="visually-hidden">مزايا السمطة المطاطية</h2>
+  <img
+    src="/a7zima/images/benefits-grid.jpg"
+    alt="سمطة رجالية مطاطية كاكي مع أبيض - قماش مطاط مريح وكليبس بلا ثقوب"
+    class="section-title-img"
+    loading="lazy"
+    width="900" height="670">
+</section>
+
+<!-- SECTION: CTA (entre les 2 images) -->
+<div class="section container" style="text-align:center; padding-top:0">
+  <button type="button" class="btn" data-scroll="#order">اطلب دابا 👈</button>
+</div>
+
+<!-- SECTION: COMPARATIF -->
+<section class="section container" aria-labelledby="title-compare">
+  <h2 id="title-compare" class="visually-hidden">مقارنة بين السمطة العادية والسمطة المطاطية</h2>
+  <img
+    src="/a7zima/images/comparison-table.jpg"
+    alt="سمطة رجالية مطاطية سوداء مع لمسات زرقاء - كليبس بلا ثقوب ومريح فالاستعمال"
+    class="section-title-img"
+    loading="lazy"
+    width="900" height="670">
+
+  <!-- Badges réels en HTML (courts et lisibles) -->
+  <div class="trust-badges">
+    <span class="trust-badge">🚚 توصيل مجاني</span>
+    <span class="trust-badge">↩️ ضمان الرجوع</span>
+    <span class="trust-badge">✅ جودة متأكدة</span>
+  </div>
+</section>
+
+<!-- SECTION: AVIS CLIENTS -->
+<section class="section container" aria-labelledby="title-reviews">
+  <h2 id="title-reviews" style="text-align:center; font-size:22px; font-weight:900; margin-bottom:4px">⭐ آراء الزبناء</h2>
+  <p style="text-align:center; color:var(--muted); font-size:14px; margin-bottom:16px">
+    <strong style="color:var(--ink)">4.9/5</strong> — من 127 زبون
+  </p>
+
+  <div class="reviews">
+    <article class="review">
+      <div class="review-stars" aria-label="5 نجوم">★★★★★</div>
+      <p class="review-text">ما كنتش متوقع هاد الجودة. السمطة سميكة و مريحة، ما كاين حتى ثقب كي بان. جودة مزيانة بزاف و الثمن معقول.</p>
+      <div class="review-meta">
+        <span class="review-avatar" aria-hidden="true">ي</span>
+        <div><strong>يوسف ب.</strong><small>الدار البيضاء · قبل 3 أيام</small></div>
+      </div>
+    </article>
+
+    <article class="review">
+      <div class="review-stars" aria-label="5 نجوم">★★★★★</div>
+      <p class="review-text">اللون الرمادي مع الخطوط الزرقاء زوين بزاف. القماش ما كيتمرمش و ما كيحبس الحركة. عجبني بزاف و غادي نطلب مرة أخرى.</p>
+      <div class="review-meta">
+        <span class="review-avatar" aria-hidden="true">ع</span>
+        <div><strong>عبد الرحيم ك.</strong><small>سيدي البرنوص، الدار البيضاء · قبل أسبوع</small></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- SECTION: FORMULAIRE DE COMMANDE -->
+<section class="section container" id="order" aria-labelledby="title-order">
+  <h2 id="title-order" style="text-align:center; font-size:22px; font-weight:900; margin-bottom:6px">سجّل طلبك دابا و ادفع عند الاستلام</h2>
+
+  <div class="order-card" style="margin-top:14px">
+    <p class="subtitle">اكتب غير الاسم ورقم الهاتف. الدفع عند الاستلام.</p>
+
+    <form id="order-form" novalidate>
+      <!-- Offre unique : pack de 3 pièces -->
+      <div class="offer-box" role="group" aria-label="العرض: 3 قطع بـ 149 د.م">
+        <div class="offer-box-row">
+          <span class="offer-box-qty">3 قطع</span>
+          <span class="offer-box-price">149 د.م <s>249 د.م</s></span>
+        </div>
+        <p class="offer-box-note">⏳ عرض محدود: 5 أيام — باقي 3 قطع فقط فالمخزون</p>
+      </div>
+
+      <p class="total-row">الثمن النهائي: <strong id="total-price">149 د.م</strong></p>
+      <p class="shipping-note">🚚 التوصيل مجاني — ما كاتخلّصش حتى 1 د.م للتوصيل</p>
+
+      <div class="order-form">
+        <div class="field">
+          <label for="f-name">الاسم الكامل</label>
+          <input type="text" id="f-name" name="name" placeholder="مثال: محمد العلوي" autocomplete="name">
+          <p class="error-msg" id="err-name">اكتب اسمك الكامل من فضلك.</p>
+        </div>
+
+        <div class="field">
+          <label for="f-phone">رقم الهاتف</label>
+          <input type="tel" id="f-phone" name="phone" placeholder="06XXXXXXXX" dir="ltr" autocomplete="tel" inputmode="tel">
+          <p class="error-msg" id="err-phone">رقم الهاتف ماشي صحيح — جرب بالصيغة 06XXXXXXXX.</p>
+        </div>
+
+        <div class="field">
+          <label for="f-city">المدينة</label>
+          <select id="f-city" name="city">
+            <option value="الدار البيضاء">الدار البيضاء</option>
+          </select>
+          <p class="note-casa">التوصيل دابا متاح فقط فمدينة الدار البيضاء.</p>
+        </div>
+
+        <div class="field">
+          <label for="f-address">العنوان</label>
+          <input type="text" id="f-address" name="address" placeholder="الحي، الشارع، الرقم… (مثال: المعاريف، زرقطوني، 12)" autocomplete="street-address">
+          <p class="error-msg" id="err-address">كتب العنوان ديالك باش التوصيل يوصل ليك.</p>
+        </div>
+
+        <!-- Champ caché : quantité (prêt pour l'API) -->
+        <input type="hidden" name="quantity" id="f-quantity" value="3">
+
+        <div style="margin-top:20px">
+          <button type="submit" class="btn" id="submit-btn">اطلب دابا — الدفع عند الاستلام</button>
+          <p class="error-msg" id="err-general" style="text-align:center; margin-top:10px"></p>
+          <p class="ok-msg" id="ok-msg" style="display:none; text-align:center; margin-top:10px; color:var(--green); font-weight:700">
+            ✅ تسجلات طلبك بنجاح! غادي نتصلو بيك قريباً.
+          </p>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- SECTION: STICKY BAR (mobile, CTA toujours visible) -->
+<div class="sticky-bar">
+  <div class="sticky-inner">
+    <div class="sticky-price">
+      149 <small>د.م</small>
+    </div>
+    <button type="button" class="btn" data-scroll="#order">اطلب دابا 👈</button>
+  </div>
+</div>
+
+<!-- Supabase (commandes COD) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+  /* ===== CONFIG API — à personnaliser si tu changes de projet ===== */
+  var SUPABASE_URL = "https://rzqkihenwcbaklzpqvju.supabase.co";
+  var SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ6cWtpaGVud2NiYWtsenBxdmp1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzOTEwNzYsImV4cCI6MjA5Nzk2NzA3Nn0.PqgV22wWc8yx9Wki3_2qBK8mxnIbR_v4v9IBnx_QfVM";
+</script>
+<script>
+  /* ============ COMPTE À REBOURS (OFFRE 5 JOURS) ============ */
+  (function () {
+    var FIVE_DAYS = 5 * 24 * 60 * 60 * 1000;
+    var el = document.getElementById("countdown");
+    if (!el) return;
+    var now = Date.now();
+    var deadline = 0;
+    try {
+      deadline = parseInt(localStorage.getItem("belt_offer_deadline") || "0", 10);
+      if (!deadline || deadline - now < 0 || deadline - now > FIVE_DAYS) {
+        deadline = now + FIVE_DAYS;
+        localStorage.setItem("belt_offer_deadline", String(deadline));
+      }
+    } catch (e) {
+      deadline = now + FIVE_DAYS; /* mode privé / file:// sans stockage */
+    }
+    function tick() {
+      var left = Math.max(0, deadline - Date.now());
+      if (left <= 0) { el.textContent = "انتهى العرض"; clearInterval(timer); return; }
+      var d = Math.floor(left / 86400000);
+      var h = Math.floor((left % 86400000) / 3600000);
+      var m = Math.floor((left % 3600000) / 60000);
+      var s = Math.floor((left % 60000) / 1000);
+      el.textContent = d + "ي " + h + "س " + m + "د " + s + "ث";
+    }
+    var timer = setInterval(tick, 1000);
+    tick();
+  })();
+
+  /* ============ SCROLL VERS LE FORMULAIRE ============ */
+  document.querySelectorAll("[data-scroll]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      const target = document.querySelector(btn.dataset.scroll);
+      if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  });
+
+  /* ============ VALIDATION + ENVOI FORMULAIRE (Supabase) ============ */
+  var PRODUCT_ID = "e3333333-3333-4333-8333-333333333333"; /* ceinture-elastic-sport-lp */
+  var UNIT_PRICE = 149 / 3; /* pack de 3 = 149 د.م */
+  var PACK_QTY = 3;
+
+  document.getElementById("order-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    let ok = true;
+
+    const name = document.getElementById("f-name");
+    const phone = document.getElementById("f-phone");
+    const address = document.getElementById("f-address");
+
+    document.getElementById("err-name").classList.remove("show");
+    document.getElementById("err-phone").classList.remove("show");
+    document.getElementById("err-address").classList.remove("show");
+
+    if (!name.value.trim()) {
+      document.getElementById("err-name").classList.add("show");
+      ok = false;
+    }
+    let p = phone.value.replace(/\D/g, "");
+    if (p.startsWith("212")) p = "0" + p.slice(3);
+    const phoneValid = /^(06|07)\d{8}$/.test(p);
+    if (!phoneValid) {
+      document.getElementById("err-phone").classList.add("show");
+      ok = false;
+    }
+    if (!address.value.trim()) {
+      document.getElementById("err-address").classList.add("show");
+      ok = false;
+    }
+
+    if (!ok) return;
+
+    const payload = {
+      name: name.value.trim(),
+      phone: p,
+      city: document.getElementById("f-city").value,
+      address: address.value.trim(),
+      quantity: PACK_QTY,
+      total: 149,
+    };
+
+    const okMsg = document.getElementById("ok-msg");
+    const errMsg = document.getElementById("err-general");
+    const btn = document.getElementById("submit-btn");
+    okMsg.style.display = "none";
+    errMsg.textContent = "";
+
+    if (!window.supabase || !SUPABASE_URL || !SUPABASE_ANON_KEY) {
+      errMsg.textContent = "الخدمة مازال ماشي مهيّأة. عاود المحاولة من بعد.";
+      return;
+    }
+
+    btn.disabled = true;
+    btn.style.opacity = ".7";
+    btn.textContent = "كنسجلو الطلب…";
+
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    db.from("orders")
+      .insert({
+        customer_name: payload.name,
+        phone_number: payload.phone,
+        city: payload.city,
+        address: payload.address,
+        total_price: payload.total,
+        status: "pending",
+        upsell_added: false,
+      })
+      .select("id")
+      .single()
+      .then(function ({ data, error }) {
+        if (error || !data) throw new Error((error && error.message) || "insert orders failed");
+        return db.from("order_items").insert({
+          order_id: data.id,
+          product_id: PRODUCT_ID,
+          quantity: PACK_QTY,
+          price: UNIT_PRICE,
+        });
+      })
+      .then(function ({ error }) {
+        if (error) throw new Error(error.message);
+        okMsg.style.display = "block";
+        e.target.reset();
+      })
+      .catch(function (err) {
+        console.error(err);
+        errMsg.textContent = "ما تسجلش الطلب. عاود المحاولة ولا اتصل فينا.";
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.style.opacity = "";
+        btn.textContent = "اطلب دابا — الدفع عند الاستلام";
+      });
+  });
+</script>
+</body>
+</html>

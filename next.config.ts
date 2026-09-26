@@ -25,7 +25,11 @@ const nextConfig: NextConfig = {
           ]
         : []),
     ],
-    qualities: [75, 90, 95],
+    qualities: [75, 85, 90, 95],
+  },
+  // Landing page autonome (HTML statique) accessible sur /a7zima
+  async rewrites() {
+    return [{ source: '/a7zima', destination: '/a7zima/index.html' }];
   },
 };
 
