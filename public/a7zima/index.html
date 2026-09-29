@@ -413,6 +413,21 @@
       currency: PIXEL_CURRENCY,
     };
   }
+  /* Purchase envoye une seule fois par commande, meme si la page est rechargee */
+  function fbTrackPurchase(orderId) {
+    if (!orderId) return;
+    var key = "a7zima_purchase_tracked_" + orderId;
+    try {
+      if (localStorage.getItem(key) === "1") return;
+    } catch (e) { /* stockage indisponible */ }
+    var params = fbItemParams();
+    params.order_id = orderId;
+    params.content_name = "Ceinture Elastique Homme sans Trou - pack de 3";
+    fbTrack("Purchase", params);
+    try {
+      localStorage.setItem(key, "1");
+    } catch (e) { /* stockage indisponible */ }
+  }
 
   document.querySelectorAll("[data-scroll]").forEach(function (btn) {
     btn.addEventListener("click", function () {
@@ -482,6 +497,7 @@
     btn.textContent = "كنسجلو الطلب…";
 
     const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    var orderId = null;
 
     db.from("orders")
       .insert({
@@ -497,6 +513,7 @@
       .single()
       .then(function ({ data, error }) {
         if (error || !data) throw new Error((error && error.message) || "insert orders failed");
+        orderId = data.id;
         return db
           .from("order_items")
           .insert({
@@ -523,6 +540,7 @@
       .then(function ({ error }) {
         if (error) throw new Error(error.message);
         fbTrack("Lead", fbItemParams());
+        fbTrackPurchase(orderId);
         okMsg.style.display = "block";
         e.target.reset();
       })
