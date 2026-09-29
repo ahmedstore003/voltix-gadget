@@ -427,6 +427,7 @@
     try {
       localStorage.setItem(key, "1");
     } catch (e) { /* stockage indisponible */ }
+    console.info("[MetaPixel] Purchase envoyé — order_id:", orderId);
   }
 
   document.querySelectorAll("[data-scroll]").forEach(function (btn) {
@@ -514,6 +515,11 @@
       .then(function ({ data, error }) {
         if (error || !data) throw new Error((error && error.message) || "insert orders failed");
         orderId = data.id;
+        /* La commande existe en base = la vente est faite (COD) : on envoie les
+           conversions ICI, avant l'insert order_items, pour que le pixel ne
+           dépende jamais de l'insertion de la ligne produit. */
+        fbTrack("Lead", fbItemParams());
+        fbTrackPurchase(orderId);
         return db
           .from("order_items")
           .insert({
@@ -537,10 +543,11 @@
             return res;
           });
       })
-      .then(function ({ error }) {
-        if (error) throw new Error(error.message);
-        fbTrack("Lead", fbItemParams());
-        fbTrackPurchase(orderId);
+      .then(function (res) {
+        /* order_items est secondaire : la vente est déjà enregistrée et suivie. */
+        if (res && res.error) {
+          console.warn("Ligne produit non enregistrée (produit absent en base) :", res.error.message);
+        }
         okMsg.style.display = "block";
         e.target.reset();
       })
