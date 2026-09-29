@@ -5,6 +5,32 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>سمطة رجالية رياضية مطاطية بلا ثقوب | 149 د.م — الدفع عند الاستلام</title>
 <meta name="description" content="سمطة رجالية بقماش مطاطي مرن، نظام كليبس بدون ثقوب، 3 ألوان. توصيل سريع للدار البيضاء والدفع عند الاستلام.">
+
+<!-- Meta Pixel (Facebook) — même ID que l'app (src/lib/analytics/pixels.ts) -->
+<script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];
+  t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s);}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1643486293398369');
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', {
+    content_name: 'Ceinture Elastique Homme sans Trou - pack de 3',
+    content_category: 'Smart Wearables',
+    content_ids: ['e3333333-3333-4333-8333-333333333333'],
+    content_type: 'product',
+    num_items: 3,
+    value: 149,
+    currency: 'MAD'
+  });
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id=1643486293398369&ev=PageView&noscript=1">
+</noscript>
+
 <style>
   /* ============ BASE ============ */
   :root {
@@ -371,9 +397,26 @@
     tick();
   })();
 
-  /* ============ SCROLL VERS LE FORMULAIRE ============ */
+  /* ============ SCROLL VERS LE FORMULAIRE + META PIXEL ============ */
+  var PIXEL_VALUE = 149;
+  var PIXEL_CURRENCY = "MAD";
+  var PIXEL_PRODUCT_ID = "e3333333-3333-4333-8333-333333333333";
+  function fbTrack(event, params) {
+    if (typeof window.fbq === "function") window.fbq("track", event, params);
+  }
+  function fbItemParams() {
+    return {
+      content_ids: [PIXEL_PRODUCT_ID],
+      content_type: "product",
+      num_items: 3,
+      value: PIXEL_VALUE,
+      currency: PIXEL_CURRENCY,
+    };
+  }
+
   document.querySelectorAll("[data-scroll]").forEach(function (btn) {
     btn.addEventListener("click", function () {
+      fbTrack("InitiateCheckout", fbItemParams());
       const target = document.querySelector(btn.dataset.scroll);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -479,6 +522,7 @@
       })
       .then(function ({ error }) {
         if (error) throw new Error(error.message);
+        fbTrack("Lead", fbItemParams());
         okMsg.style.display = "block";
         e.target.reset();
       })
