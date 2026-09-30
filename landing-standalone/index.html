@@ -6,6 +6,20 @@
 <title>سمطة رجالية رياضية مطاطية بلا ثقوب | 149 د.م — الدفع عند الاستلام</title>
 <meta name="description" content="سمطة رجالية بقماش مطاطي مرن، نظام كليبس بدون ثقوب، 3 ألوان. توصيل سريع للدار البيضاء والدفع عند الاستلام.">
 
+<!-- ===== OFFRE : source unique de vérité (prix, quantité, produit) =====
+     Modifier ces 6 valeurs suffit pour mettre à jour l'affichage, la commande
+     Supabase et les événements du Pixel. -->
+<script>
+  window.OFFER = {
+    name: 'Ceinture Elastique Homme sans Trou - pack de 3',
+    productId: 'e3333333-3333-4333-8333-333333333333',
+    qty: 3,
+    total: 149,
+    oldTotal: 249,
+    currency: 'MAD',
+  };
+</script>
+
 <!-- Meta Pixel (Facebook) — même ID que l'app (src/lib/analytics/pixels.ts) -->
 <script>
   !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -17,13 +31,13 @@
   fbq('init', '1643486293398369');
   fbq('track', 'PageView');
   fbq('track', 'ViewContent', {
-    content_name: 'Ceinture Elastique Homme sans Trou - pack de 3',
+    content_name: window.OFFER.name,
     content_category: 'Smart Wearables',
-    content_ids: ['e3333333-3333-4333-8333-333333333333'],
+    content_ids: [window.OFFER.productId],
     content_type: 'product',
-    num_items: 3,
-    value: 149,
-    currency: 'MAD'
+    num_items: window.OFFER.qty,
+    value: window.OFFER.total,
+    currency: window.OFFER.currency
   });
 </script>
 <noscript>
@@ -210,7 +224,7 @@
   <div class="hero-body">
     <!-- Offre : pack de 3 pièces -->
     <div class="price-row">
-      <span class="price-now">149 <small>د.م</small></span>
+      <span class="price-now"><span id="hero-total">149</span> <small>د.م</small></span>
       <span class="price-old">249 د.م</span>
       <span class="price-badge">-40%</span>
     </div>
@@ -354,7 +368,7 @@
 <div class="sticky-bar">
   <div class="sticky-inner">
     <div class="sticky-price">
-      149 <small>د.م</small>
+      <span id="sticky-total">149</span> <small>د.م</small>
     </div>
     <button type="button" class="btn" data-scroll="#order">اطلب دابا 👈</button>
   </div>
@@ -398,22 +412,27 @@
   })();
 
   /* ============ SCROLL VERS LE FORMULAIRE + META PIXEL ============ */
-  var PIXEL_VALUE = 149;
-  var PIXEL_CURRENCY = "MAD";
-  var PIXEL_PRODUCT_ID = "e3333333-3333-4333-8333-333333333333";
+  var OFFER = window.OFFER;
+  var PIXEL_VALUE = OFFER.total; /* nombre, pas de texte */
+  var PIXEL_CURRENCY = OFFER.currency;
+  var PIXEL_PRODUCT_ID = OFFER.productId;
+  function fbTrackEvent(event, params, options) {
+    if (typeof window.fbq === "function") window.fbq("track", event, params, options);
+  }
   function fbTrack(event, params) {
-    if (typeof window.fbq === "function") window.fbq("track", event, params);
+    fbTrackEvent(event, params);
   }
   function fbItemParams() {
     return {
       content_ids: [PIXEL_PRODUCT_ID],
       content_type: "product",
-      num_items: 3,
+      num_items: OFFER.qty,
       value: PIXEL_VALUE,
       currency: PIXEL_CURRENCY,
     };
   }
-  /* Purchase envoye une seule fois par commande, meme si la page est rechargee */
+  /* Purchase : 1 seule fois par commande (flag local + eventID = order_id,
+     ce qui deduponne aussi cote Meta / Conversions API). */
   function fbTrackPurchase(orderId) {
     if (!orderId) return;
     var key = "a7zima_purchase_tracked_" + orderId;
@@ -422,26 +441,51 @@
     } catch (e) { /* stockage indisponible */ }
     var params = fbItemParams();
     params.order_id = orderId;
-    params.content_name = "Ceinture Elastique Homme sans Trou - pack de 3";
-    fbTrack("Purchase", params);
+    params.content_name = OFFER.name;
+    fbTrackEvent("Purchase", params, { eventID: orderId });
     try {
       localStorage.setItem(key, "1");
     } catch (e) { /* stockage indisponible */ }
     console.info("[MetaPixel] Purchase envoyé — order_id:", orderId);
   }
 
+  /* InitiateCheckout : au 1er clic sur un CTA ou le 1er champ du formulaire touché */
+  var checkoutStarted = false;
+  function fbStartCheckout() {
+    if (checkoutStarted) return;
+    checkoutStarted = true;
+    fbTrack("InitiateCheckout", fbItemParams());
+    console.info("[MetaPixel] InitiateCheckout envoyé");
+  }
+
   document.querySelectorAll("[data-scroll]").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      fbTrack("InitiateCheckout", fbItemParams());
+      fbStartCheckout();
       const target = document.querySelector(btn.dataset.scroll);
       if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   });
 
+  ["f-name", "f-phone", "f-city", "f-address"].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("focus", fbStartCheckout);
+    el.addEventListener("input", fbStartCheckout);
+  });
+
+  /* Les prix affichés viennent de OFFER : une seule source de vérité. */
+  (function syncOfferPrices() {
+    [["total-price", OFFER.total + " د.م"], ["hero-total", String(OFFER.total)], ["sticky-total", String(OFFER.total)]]
+      .forEach(function (pair) {
+        var el = document.getElementById(pair[0]);
+        if (el) el.textContent = pair[1];
+      });
+  })();
+
   /* ============ VALIDATION + ENVOI FORMULAIRE (Supabase) ============ */
-  var PRODUCT_ID = "e3333333-3333-4333-8333-333333333333"; /* ceinture-elastic-sport-lp */
-  var UNIT_PRICE = 149 / 3; /* pack de 3 = 149 د.م */
-  var PACK_QTY = 3;
+  var PRODUCT_ID = OFFER.productId; /* ceinture-elastic-sport-lp */
+  var PACK_QTY = OFFER.qty;
+  var UNIT_PRICE = OFFER.total / OFFER.qty; /* prix unitaire = total / quantité */
 
   document.getElementById("order-form").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -479,7 +523,7 @@
       city: document.getElementById("f-city").value,
       address: address.value.trim(),
       quantity: PACK_QTY,
-      total: 149,
+      total: OFFER.total,
     };
 
     const okMsg = document.getElementById("ok-msg");
