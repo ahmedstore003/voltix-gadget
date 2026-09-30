@@ -31,19 +31,24 @@ join pg_language l on l.oid = p.prolang
 left join pg_trigger t on t.tgfoid = p.oid
 where p.proname = 'notify_telegram_new_order';
 
--- 4) Des requêtes HTTP ont-elles déjà été mises en file ?
-select count(*) as queued_requests,
-       min(created) as oldest,
-       max(created) as newest
-from net.http_request_queue;
+-- 4) Quelles colonnes existent vraiment dans les tables net.* ?
+--    (les colonnes varient selon la version de pg_net : ne suppose rien)
+select table_name, ordinal_position, column_name, data_type
+from information_schema.columns
+where table_schema = 'net'
+  and table_name in ('http_request_queue', '_http_response', 'http_response')
+order by table_name, ordinal_position;
 
--- 5) Y a-t-il des réponses reçues ?
-select id, status_code, left(content, 120) as content
+-- 5) File d'attente : lignes en attente d'envoi
+select count(*) as queued_requests from net.http_request_queue;
+
+-- 6) Dernières réponses reçues (colonnes filtrées dynamiquement)
+select *
 from net._http_response
-order by id desc
+order by 1 desc
 limit 5;
 
--- 6) Le worker pg_net tourne-t-il ? (si absent, rien ne partira jamais)
+-- 7) Le worker pg_net tourne-t-il ? (si absent, rien ne partira jamais)
 select extname, extversion
 from pg_extension
 where extname = 'pg_net';
