@@ -212,7 +212,7 @@
   <!-- LCP : pas de lazy load. <picture> car les deux formats ont la MÊME largeur
        (900w) mais des ratios différents — srcset seul ne peut pas trancher.
        phone (≤640px) → hero-banner-mobile.jpg 900x1600 (image entière)
-       desktop       → hero-banner.jpg 900x600 (recadrage) -->
+       desktop       → hero-banner.jpg 900x1000 (recadrage doux, 78% de la hauteur) -->
   <picture>
     <source media="(max-width: 640px)" srcset="images/hero-banner-mobile.jpg">
     <img
@@ -220,7 +220,7 @@
       src="images/hero-banner.jpg"
       alt="سمطة رجالية رياضية مطاطية بلا ثقوب - عرض خاص بخصم 40% وتقييم 4.9 نجوم"
       fetchpriority="high"
-      width="900" height="600">
+      width="900" height="1000">
   </picture>
 
   <div class="hero-body">
